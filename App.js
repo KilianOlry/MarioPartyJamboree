@@ -1,9 +1,10 @@
 import {StatusBar} from 'expo-status-bar';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useFonts} from "expo-font";
 import {boards} from "./model/BoardsModel";
 import {useStore} from "./store/store";
 import {useState} from "react";
+import {BlurView} from "expo-blur";
 
 export default function App() {
 
@@ -39,16 +40,35 @@ export default function App() {
       <View>
         {boardToShow ? (
           <>
-            <Image
-              style={styles.worldImage}
-              source={boardToShow.boardView} // Utilise boardToShow.boardView pour afficher l'image
-            />
-            <Text>{boardToShow.name}</Text>
+            <BlurView
+              style={styles.blur}
+              intensity={100}
+              tint="light"
+            >
+              <Image
+                style={styles.worldImage}
+                source={boardToShow.boardView}
+              />
+              <Text>{boardToShow.name}</Text>
+            </BlurView>
+
           </>
         ) : (
           ""
         )}
       </View>
+
+      {boardToShow ? (
+        <>
+
+          <ImageBackground
+            source={boardToShow.boardView}
+            style={styles.background}
+          >
+          </ImageBackground>
+        </>
+      ) : ""}
+
 
       <StatusBar style="auto"/>
     </View>
@@ -57,27 +77,50 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 70,
-    backgroundColor: '#fff',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
   },
   images: {
     width: 248,
     height: 200,
   },
   button: {
-    backgroundColor: '#C2352D',
+    backgroundColor: '#ff1014',
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 25,
     margin: 50,
-    borderBottomEndRadius: 10,
-    borderTopStartRadius: 10,
-    borderTopEndRadius: 2,
-    borderBottomStartRadius: 2,
+    borderRadius: 18,
   },
   worldImage: {
     width: 310,
     height: 200,
-  }
+    borderRadius: 40,
+  },
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: -1,
+  },
+  overlay: {
+    padding: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.5)',
+  },
+  text: {
+    fontSize: 24,
+    color: '#fff',
+  },
+  blur: {
+    padding: 10,
+  },
 });
