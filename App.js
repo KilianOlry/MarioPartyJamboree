@@ -1,5 +1,5 @@
 import {StatusBar} from 'expo-status-bar';
-import {Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
 import {useFonts} from "expo-font";
 import {boards} from "./model/BoardsModel";
 import {useStore} from "./store/store";
@@ -25,17 +25,26 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <Image
-        style={styles.images}
-        source={require('./assets/images/Super_Mario_Party_Jamboree_Logo.png')}
-      />
+      {!boardToShow ?
+        <Image
+          style={styles.images}
+          source={require('./assets/images/Super_Mario_Party_Jamboree_Logo.png')}
+        />
+        : ""}
+
 
       <TouchableOpacity style={styles.button} onPress={() => {
         handleClick()
-      }}>
+        }}>
 
         <Text style={{fontFamily: 'AOTFShinGoProBold', color: "#FFF"}}>Choix des cartes</Text>
+        <Image
+          style={styles.hat}
+          source={require('./assets/images/mario.png')}
+        />
       </TouchableOpacity>
+
+
 
       <View>
         {boardToShow ? (
@@ -70,7 +79,7 @@ export default function App() {
       ) : ""}
 
 
-      <StatusBar style="auto"/>
+      {/*<StatusBar style="auto"/>*/}
     </View>
   );
 }
@@ -87,6 +96,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   button: {
+    position: 'relative',
     backgroundColor: '#ff1014',
     paddingVertical: 10,
     paddingHorizontal: 25,
@@ -122,5 +132,13 @@ const styles = StyleSheet.create({
   },
   blur: {
     padding: 10,
+    borderRadius: 10,
   },
+  hat: {
+    position: 'absolute',
+    top: -18,
+    right: 62,
+    width: 37,
+    height: 30
+  }
 });
