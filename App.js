@@ -1,20 +1,16 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, View} from 'react-native';
-import {useFonts} from "expo-font";
+import {StyleSheet, SafeAreaView} from 'react-native';
 import {boards} from "./model/BoardsModel";
 import {useStore} from "./store/store";
 import {useState} from "react";
-import {BlurView} from "expo-blur";
 import {Logo} from "./components/Logo";
 import {BoardCard} from "./components/BoardCard";
 import {ButtonRandom} from "./components/Button";
 import {BoardBackground} from "./components/BoardBackground";
+import {LinearGradient} from "expo-linear-gradient";
+import {Gradient} from "./components/gradients/Gradient";
 
 export default function App() {
-
-  const [loaded, error] = useFonts({
-    'AOTFShinGoProBold': require('./assets/fonts/AOTFShinGoProDeBold.otf'),
-  });
 
   const [boardToShow, setBoardToShow] = useState(null);
   const {randomNumber, generateRandomNumber} = useStore();
@@ -27,18 +23,21 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
-      <Logo boardToShow={boardToShow} />
+      <Gradient/>
 
-      <BoardCard boardToShow={boardToShow} />
+      <Logo boardToShow={boardToShow}/>
 
-      <ButtonRandom handleClick={handleClick} />
+      <BoardCard boardToShow={boardToShow}/>
 
-      <BoardBackground boardToShow={boardToShow} />
+      <ButtonRandom handleClick={handleClick}/>
+
+      <BoardBackground boardToShow={boardToShow}/>
 
       <StatusBar style="auto"/>
-    </View>
+
+    </SafeAreaView>
   );
 }
 

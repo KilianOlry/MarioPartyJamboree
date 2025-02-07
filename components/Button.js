@@ -1,12 +1,18 @@
+import {useFonts} from "expo-font";
 import {Image, StyleSheet, Text, TouchableOpacity} from "react-native";
 
 export const ButtonRandom = ({handleClick}) => {
+
+  const [loaded, error] = useFonts({
+    'AOTFShinGoProBold': require('../assets/fonts/AOTFShinGoProDeBold.otf'),
+  });
+
   return (
     <TouchableOpacity style={styles.button} onPress={() => {
       handleClick()
     }}>
 
-      <Text style={{fontFamily: 'AOTFShinGoProBold', color: "#FFF"}}>Choix des cartes</Text>
+      <Text style={styles.textBtn}>Aléatoire</Text>
       <Image
         style={styles.hat}
         source={require('../assets/images/mario.png')}
@@ -17,25 +23,28 @@ export const ButtonRandom = ({handleClick}) => {
 
 const styles = StyleSheet.create({
   button: {
-    position: 'relative',
-    backgroundColor: '#ff1014',
+    position: 'absolute',
+    bottom: 30,
+    left: '50%',
+    transform: [{ translateX: -100 }],
+    right: 0,
+    backgroundColor: '#E52521',
     paddingVertical: 10,
     paddingHorizontal: 25,
-    margin: 50,
     borderRadius: 18,
   },
-  text: {
-    fontSize: 24,
-    color: '#fff',
+  textBtn: {
+    fontSize: 15,
+    fontFamily: 'AOTFShinGoProBold',
+    color: "#FFF",
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
   hat: {
     position: 'absolute',
-    top: -17,
+    top: -26,
     left: '50%',
-    transform: [
-      { translateX: -61 },
-    ],
-    width: 37,
-    height: 30
+    width: 46,
+    height: 34
   }
 });
