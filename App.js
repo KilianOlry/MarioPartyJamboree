@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, SafeAreaView, Animated} from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
 import {boards} from "./model/BoardsModel";
-import {boardToshow, generateRandom} from "./store/store";
+import {gameToShowStore, generateRandomStore} from "./store/store";
 import {Logo} from "./components/Logo";
 import {BoardCard} from "./components/BoardCard";
 import {ButtonRandom} from "./components/Button";
@@ -10,28 +10,29 @@ import {Gradient} from "./components/gradients/Gradient";
 
 export default function App() {
 
-  const {randomNumber, generateRandomNumber} = generateRandom();
-  const {boardToShow, setBoardToShow} = boardToshow();
+  const {randomNumber, generateRandomNumber} = generateRandomStore();
+  const {gameToShow, setGameToShow} = gameToShowStore();
+
 
   const handleClick = () => {
     generateRandomNumber();
     const board = boards[randomNumber];
-    setBoardToShow(board);
+    setGameToShow(board);
   };
 
 
   return (
     <SafeAreaView style={styles.container}>
 
-      <Gradient />
+      <Gradient/>
 
-      <Logo />
+      <Logo/>
 
-      <BoardCard boardToShow={boardToShow}/>
+      <BoardCard/>
 
       <ButtonRandom handleClick={handleClick}/>
 
-      <BoardBackground boardToShow={boardToShow}/>
+      <BoardBackground/>
 
       <StatusBar style="auto"/>
 

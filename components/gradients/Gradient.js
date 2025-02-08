@@ -1,10 +1,10 @@
 import {StyleSheet, Animated} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
-import {boardToshow} from "../../store/store";
+import {gameToShowStore} from "../../store/store";
 
 
 export const Gradient = () => {
-  const {boardToShow, setBoardToShow} = boardToshow();
+  const {gameToShow, setGameToShow} = gameToShowStore();
   const bounceValue = new Animated.Value(1);
 
   const bounceAnimation = () => {
@@ -74,7 +74,7 @@ export const Gradient = () => {
 
   return (
     <>
-      {!boardToShow ? (
+      {!gameToShow ? (
         <>
           <LinearGradient
             colors={['#049CD8', '#67C7FF']}

@@ -1,10 +1,13 @@
 import {ImageBackground, StyleSheet} from "react-native";
+import {gameToShowStore} from "../store/store";
 
-export const BoardBackground = ({boardToShow}) => {
+export const BoardBackground = () => {
+  const {gameToShow, setGameToShow} = gameToShowStore();
+
   return (
-    boardToShow ? (
+    gameToShow ? (
       <ImageBackground
-        source={boardToShow.boardView}
+        source={gameToShow.boardView}
         style={styles.background}
       >
       </ImageBackground>

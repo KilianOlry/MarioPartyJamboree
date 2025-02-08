@@ -1,8 +1,8 @@
 import {Animated, StyleSheet, View} from "react-native";
-import {boardToshow} from "../store/store";
+import {gameToShowStore} from "../store/store";
 
 export const Logo = () => {
-  const {boardToShow, setBoardToShow} = boardToshow();
+  const {gameToShow, setGameToShow} = gameToShowStore();
   const bounceValue = new Animated.Value(1);
 
   const bounceAnimation = () => {
@@ -21,7 +21,7 @@ export const Logo = () => {
 
   return (
     <View style={styles.container}>
-      {!boardToShow && (
+      {!gameToShow && (
         <Animated.Image style={[styles.images, {transform: [{scale: bounceValue},],},]}
           source={require('../assets/images/Super_Mario_Party_Jamboree_Logo.png')}
         />

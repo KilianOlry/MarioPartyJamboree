@@ -12,20 +12,20 @@ export const ButtonRandom = ({handleClick}) => {
 
   const slideOut = () => {
     Animated.timing(slideAnim, {
-      toValue: 500, // Déplace l'élément à 500 pixels à droite (hors écran)
-      duration: 1000, // Durée de l'animation (1 seconde)
-      useNativeDriver: true, // Utilisation du moteur natif pour les animations
+      toValue: 500,
+      duration: 1000,
+      useNativeDriver: true,
     }).start();
   };
 
   return (
-    <TouchableOpacity style={styles.button} onPress={() => {
+    <TouchableOpacity style={[styles.button, styles.absolut]} onPress={() => {
       handleClick()
     }}>
 
       <Text style={styles.textBtn}>Aléatoire</Text>
       <Image
-        style={styles.hat}
+        style={[styles.hat, styles.absolut]}
         source={require('../assets/images/mario.png')}
       />
     </TouchableOpacity>
@@ -33,8 +33,10 @@ export const ButtonRandom = ({handleClick}) => {
 };
 
 const styles = StyleSheet.create({
-  button: {
+  absolut: {
     position: 'absolute',
+  },
+  button: {
     bottom: 30,
     left: '50%',
     transform: [{translateX: -100}],
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   hat: {
-    position: 'absolute',
     top: -26,
     left: '50%',
     width: 46,

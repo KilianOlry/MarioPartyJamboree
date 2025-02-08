@@ -1,10 +1,13 @@
 import {Image, StyleSheet, Text, View} from "react-native";
 import {BlurView} from "expo-blur";
+import {gameToShowStore} from "../store/store";
 
-export const BoardCard = ({boardToShow}) => {
+export const BoardCard = () => {
+  const {gameToShow, setGameToShow} = gameToShowStore();
+
   return (
     <View>
-      {boardToShow ? (
+      {gameToShow ? (
         <>
           <BlurView
             style={styles.blur}
@@ -13,9 +16,9 @@ export const BoardCard = ({boardToShow}) => {
           >
             <Image
               style={styles.worldImage}
-              source={boardToShow.boardIcon}
+              source={gameToShow.boardIcon}
             />
-            <Text>{boardToShow.name}</Text>
+            <Text>{gameToShow.name}</Text>
           </BlurView>
 
         </>
