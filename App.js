@@ -7,6 +7,7 @@ import {BoardCard} from "./components/BoardCard";
 import {ButtonRandom} from "./components/Button";
 import {BoardBackground} from "./components/BoardBackground";
 import {Gradient} from "./components/gradients/Gradient";
+import {Tube} from "./components/Tube";
 
 export default function App() {
 
@@ -25,6 +26,8 @@ export default function App() {
     <SafeAreaView style={styles.container}>
 
       <Gradient/>
+
+      <Tube/>
 
       <Logo/>
 
