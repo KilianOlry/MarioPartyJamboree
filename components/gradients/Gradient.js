@@ -11,25 +11,25 @@ export const Gradient = () => {
   const circleSizeTwo = 100;
   const borderRadiusTwo = circleSizeTwo / 2;
 
-  const animatedScale = useRef(new Animated.Value(1)).current;
+  const bounceValue = new Animated.Value(1);
 
-  useEffect(() => {
+  const bounceAnimation = () => {
+
     Animated.loop(
       Animated.sequence([
-        Animated.timing(animatedScale, {
-          toValue: 1.2,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-        Animated.delay(500),
-        Animated.timing(animatedScale, {
-          toValue: 1,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-      ])
+          Animated.spring(bounceValue, {
+            toValue: 1.2,
+            friction: 1,
+            tension: 900,
+            duration: 4000,
+            useNativeDriver: true,
+          })
+      ]
+      )
     ).start();
-  }, []);
+  };
+
+  bounceAnimation();
 
   const styles = StyleSheet.create({
     circle: {
@@ -81,7 +81,7 @@ export const Gradient = () => {
         style={styles.backgroundGradient}
       />
 
-      <Animated.View style={[styles.circle, {transform: [{ scale: animatedScale }] }]}>
+      <Animated.View style={[styles.circle, {transform: [{scale: bounceValue},],}]}>
         <LinearGradient
           colors={['#43B047', '#00884D']}
           style={styles.circle}

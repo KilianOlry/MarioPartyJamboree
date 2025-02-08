@@ -13,7 +13,7 @@ export const BoardCard = ({boardToShow}) => {
           >
             <Image
               style={styles.worldImage}
-              source={boardToShow.boardView}
+              source={boardToShow.boardIcon}
             />
             <Text>{boardToShow.name}</Text>
           </BlurView>
