@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     fontWeight: 'bold',
-    backgroundColor: '#000000',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     paddingBlock: 14,
     width: '100%',
     textAlign: 'center',
