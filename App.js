@@ -6,8 +6,10 @@ import {Logo} from "./components/Logo";
 import {BoardCard} from "./components/BoardCard";
 import {ButtonRandom} from "./components/Button";
 import {BoardBackground} from "./components/BoardBackground";
-import {Gradient} from "./components/gradients/Gradient";
+import {Clouds} from "./components/clouds/Clouds";
 import {Tube} from "./components/Tube";
+
+import * as Haptics from 'expo-haptics';
 
 export default function App() {
 
@@ -16,6 +18,7 @@ export default function App() {
 
 
   const handleClick = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     generateRandomNumber();
     const board = boards[randomNumber];
     setGameToShow(board);
@@ -25,7 +28,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
 
-      <Gradient/>
+      <Clouds/>
 
       <Tube/>
 

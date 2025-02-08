@@ -3,7 +3,7 @@ import {LinearGradient} from "expo-linear-gradient";
 import {gameToShowStore} from "../../store/store";
 
 
-export const Gradient = () => {
+export const Clouds = () => {
   const {gameToShow, setGameToShow} = gameToShowStore();
   const bounceValue = new Animated.Value(1);
 
@@ -87,7 +87,7 @@ export const Gradient = () => {
               styles.absolut,
               { transform: [{ scale: bounceValue }] },
             ]}
-            source={require('../../assets/cloud.png')}
+            source={require('../../assets/images/clouds/cloud.png')}
           />
 
           <Animated.Image
@@ -96,7 +96,7 @@ export const Gradient = () => {
               styles.absolut,
               { transform: [{ scale: bounceValue }] },
             ]}
-            source={require('../../assets/cloud-2.png')}
+            source={require('../../assets/images/clouds/cloud-2.png')}
           />
 
           <Animated.Image
@@ -105,7 +105,7 @@ export const Gradient = () => {
               styles.absolut,
               { transform: [{ scale: bounceValue }] },
             ]}
-            source={require('../../assets/cloud-3.png')}
+            source={require('../../assets/images/clouds/cloud-3.png')}
           />
 
           <Animated.Image
@@ -115,7 +115,7 @@ export const Gradient = () => {
               styles.cloudBackground,
               { transform: [{ scale: bounceValue }] },
             ]}
-            source={require('../../assets/cloud-3.png')}
+            source={require('../../assets/images/clouds/cloud-3.png')}
           />
 
           <Animated.Image
@@ -125,7 +125,7 @@ export const Gradient = () => {
               styles.cloudBackground,
               { transform: [{ scale: bounceValue }] },
             ]}
-            source={require('../../assets/cloud-4.png')}
+            source={require('../../assets/images/clouds/cloud-4.png')}
           />
         </>
       ) : null}
