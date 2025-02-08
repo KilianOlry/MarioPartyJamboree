@@ -1,6 +1,7 @@
 import {useRef, useEffect} from "react";
-import {Animated, StyleSheet, View} from "react-native";
+import {StyleSheet, Animated} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
+
 
 export const Gradient = () => {
 
@@ -17,10 +18,10 @@ export const Gradient = () => {
       Animated.sequence([
         Animated.timing(animatedScale, {
           toValue: 1.2,
-          duration: 2000,
+          duration: 1000,
           useNativeDriver: true,
         }),
-        Animated.delay(1000),
+        Animated.delay(500),
         Animated.timing(animatedScale, {
           toValue: 1,
           duration: 1000,
