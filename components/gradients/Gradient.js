@@ -1,16 +1,8 @@
-import {useRef, useEffect} from "react";
-import {StyleSheet, Animated} from "react-native";
+import {StyleSheet, Animated, View, Image} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 
 
 export const Gradient = () => {
-
-  const circleSize = 250;
-  const borderRadius = circleSize / 2;
-
-  const circleSizeTwo = 100;
-  const borderRadiusTwo = circleSizeTwo / 2;
-
   const bounceValue = new Animated.Value(1);
 
   const bounceAnimation = () => {
@@ -18,9 +10,9 @@ export const Gradient = () => {
     Animated.loop(
       Animated.sequence([
           Animated.spring(bounceValue, {
-            toValue: 1.2,
+            toValue: 1.02,
             friction: 1,
-            tension: 900,
+            tension: 10,
             duration: 4000,
             useNativeDriver: true,
           })
@@ -32,41 +24,45 @@ export const Gradient = () => {
   bounceAnimation();
 
   const styles = StyleSheet.create({
-    circle: {
-      position: 'absolute',
+    absolut: {
+      position: "absolute",
+    },
+    cloudBackground: {
+      zIndex: -1,
+    },
+    bottomRight: {
+      top: 80,
+      right: -20,
+      width: 200,
+      height: 120,
+    },
+    bottomLeft: {
+      top: 80,
+      left: 0,
+      width: 200,
+      height: 120,
+    },
+    mid: {
+      top: 20,
+      left: 130,
+      width: 180,
+      height: 130,
+      zIndex: -2
+    },
+    topLeft: {
+      top: 0,
+      left: 0,
+      width: 200,
+      height: 120,
+    },
+    topRight: {
       top: 0,
       right: 0,
-      transform: 'translate(30%, -30%)',
-      width: circleSize,
-      height: circleSize,
-      borderRadius: borderRadius,
-    },
-    cubic: {
-      backgroundColor: 'red',
-    },
-    circleTwo: {
-      position: 'absolute',
-      zIndex: -1,
-      top: 0,
-      right: 170,
-      transform: 'translate(30%, -30%)',
-      width: circleSizeTwo,
-      height: circleSizeTwo,
-      borderRadius: borderRadiusTwo,
-    },
-    circleThree: {
-      position: 'absolute',
-      zIndex: -1,
-      top: 170,
-      right: 0,
-      transform: 'translate(30%, -30%)',
-      width: circleSizeTwo,
-      height: circleSizeTwo,
-      borderRadius: borderRadiusTwo,
+      width: 200,
+      height: 120,
     },
     backgroundGradient: {
-      position: 'absolute',
-      zIndex: -1,
+      zIndex: -100,
       width: '100%',
       height: '100%',
       top: 0,
@@ -77,26 +73,34 @@ export const Gradient = () => {
   return (
     <>
       <LinearGradient
-        colors={['#FBD000', '#00884D']}
-        style={styles.backgroundGradient}
+        colors={['#049CD8', '#67C7FF']}
+        style={[styles.backgroundGradient, styles.absolut]}
       />
 
-      <Animated.View style={[styles.circle, {transform: [{scale: bounceValue},],}]}>
-        <LinearGradient
-          colors={['#43B047', '#00884D']}
-          style={styles.circle}
-        />
-      </Animated.View>
+      <Animated.Image
+        style={[styles.bottomRight, styles.absolut, {transform: [{ scale: bounceValue },], },]}
+        source={require('../../assets/cloud.png')}>
+      </Animated.Image>
 
-      <LinearGradient
-        colors={['#00884D', '#43B047']}
-        style={styles.circleTwo}
-      />
+      <Animated.Image
+        style={[styles.bottomLeft, styles.absolut, {transform: [{ scale: bounceValue },], },]}
+        source={require('../../assets/cloud-2.png')}>
+      </Animated.Image>
 
-      <LinearGradient
-        colors={['#00884D', '#43B047']}
-        style={styles.circleThree}
-      />
+      <Animated.Image
+        style={[styles.mid, styles.absolut, {transform: [{ scale: bounceValue },], },]}
+        source={require('../../assets/cloud-3.png')}>
+      </Animated.Image>
+
+      <Animated.Image
+        style={[styles.topLeft, styles.absolut, styles.cloudBackground, {transform: [{ scale: bounceValue },], },]}
+        source={require('../../assets/cloud-3.png')}>
+      </Animated.Image>
+
+      <Animated.Image
+        style={[styles.topRight, styles.absolut, styles.cloudBackground, {transform: [{ scale: bounceValue },], },]}
+        source={require('../../assets/cloud-4.png')}>
+      </Animated.Image>
 
     </>
   )

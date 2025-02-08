@@ -8,7 +8,7 @@ export const Logo = ({boardToShow}) => {
 
     Animated.loop(
       Animated.spring(bounceValue, {
-        toValue: 1.2,
+        toValue: 1.05,
         friction: 1,
         tension: 50,
         useNativeDriver: true,
