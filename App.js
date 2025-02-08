@@ -20,22 +20,33 @@ export default function App() {
   const [sound, setSound] = useState(null);
 
   async function playSound() {
-    const { sound } = await Audio.Sound.createAsync(
-      require('./assets/sounds/original.mp3'),
-      { shouldPlay: true, isLooping: true }
-    );
-    setSound(sound);
+    if (sound) {
+      await sound.unloadAsync();
+    }
+
+    if (gameToShow && gameToShow.audio) {
+      const { sound } = await Audio.Sound.createAsync(
+        gameToShow.audio,
+        { shouldPlay: true, isLooping: true }
+      );
+      setSound(sound);
+    } else {
+      const { sound } = await Audio.Sound.createAsync(
+        require('./assets/sounds/default.mp3'),
+        { shouldPlay: true, isLooping: true }
+      );
+      setSound(sound);
+    }
   }
 
   useEffect(() => {
     playSound();
-
     return () => {
       if (sound) {
         sound.unloadAsync();
       }
     };
-  }, [])
+  }, [gameToShow]);
 
 
   const handleClick = () => {
