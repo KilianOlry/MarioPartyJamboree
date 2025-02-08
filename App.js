@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import {boards} from "./model/BoardsModel";
@@ -10,17 +11,38 @@ import {Clouds} from "./components/clouds/Clouds";
 import {Tube} from "./components/Tube";
 
 import * as Haptics from 'expo-haptics';
+import { Audio } from 'expo-av';
 
 export default function App() {
 
   const {randomNumber, generateRandomNumber} = generateRandomStore();
   const {gameToShow, setGameToShow} = gameToShowStore();
+  const [sound, setSound] = useState(null);
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require('./assets/sounds/original.mp3'),
+      { shouldPlay: true, isLooping: true }
+    );
+    setSound(sound);
+  }
+
+  useEffect(() => {
+    playSound();
+
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, [])
 
 
   const handleClick = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     generateRandomNumber();
     const board = boards[randomNumber];
+    console.log(board);
     setGameToShow(board);
   };
 

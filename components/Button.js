@@ -2,6 +2,7 @@ import {useFonts} from "expo-font";
 import {Animated, Image, StyleSheet, Text, TouchableOpacity} from "react-native";
 import {useRef} from "react";
 
+
 export const ButtonRandom = ({handleClick}) => {
 
   const [loaded, error] = useFonts({
