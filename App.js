@@ -1,86 +1,70 @@
+import {useState, useEffect} from 'react';
 import {StatusBar} from 'expo-status-bar';
-import {Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
-import {useFonts} from "expo-font";
+import {StyleSheet, SafeAreaView} from 'react-native';
 import {boards} from "./model/BoardsModel";
-import {useStore} from "./store/store";
-import {useState} from "react";
-import {BlurView} from "expo-blur";
+import {gameToShowStore, generateRandomStore} from "./store/store";
+import {Logo} from "./components/Logo";
+import {BoardCard} from "./components/BoardCard";
+import {ButtonRandom} from "./components/Button";
+import {BoardBackground} from "./components/BoardBackground";
+import {Clouds} from "./components/clouds/Clouds";
+import {Tube} from "./components/Tube";
+
+import * as Haptics from 'expo-haptics';
+import { Audio } from 'expo-av';
 
 export default function App() {
 
-  const [loaded, error] = useFonts({
-    'AOTFShinGoProBold': require('./assets/fonts/AOTFShinGoProDeBold.otf'),
-  });
+  const {randomNumber, generateRandomNumber} = generateRandomStore();
+  const {gameToShow, setGameToShow} = gameToShowStore();
+  const [sound, setSound] = useState(null);
 
-  const [boardToShow, setBoardToShow] = useState(null);
-  const {randomNumber, generateRandomNumber} = useStore();
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require('./assets/sounds/original.mp3'),
+      { shouldPlay: true, isLooping: true }
+    );
+    setSound(sound);
+  }
+
+  useEffect(() => {
+    playSound();
+
+    return () => {
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, [])
+
 
   const handleClick = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     generateRandomNumber();
     const board = boards[randomNumber];
-    setBoardToShow(board);
+    console.log(board);
+    setGameToShow(board);
   };
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
-      {!boardToShow ?
-        <Image
-          style={styles.images}
-          source={require('./assets/images/Super_Mario_Party_Jamboree_Logo.png')}
-        />
-        : ""}
+      <Clouds/>
 
+      <Tube/>
 
-      <TouchableOpacity style={styles.button} onPress={() => {
-        handleClick()
-        }}>
+      <Logo/>
 
-        <Text style={{fontFamily: 'AOTFShinGoProBold', color: "#FFF"}}>Choix des cartes</Text>
-        <Image
-          style={styles.hat}
-          source={require('./assets/images/mario.png')}
-        />
-      </TouchableOpacity>
+      <BoardCard/>
 
+      <ButtonRandom handleClick={handleClick}/>
 
+      <BoardBackground/>
 
-      <View>
-        {boardToShow ? (
-          <>
-            <BlurView
-              style={styles.blur}
-              intensity={100}
-              tint="light"
-            >
-              <Image
-                style={styles.worldImage}
-                source={boardToShow.boardView}
-              />
-              <Text>{boardToShow.name}</Text>
-            </BlurView>
+      <StatusBar style="auto"/>
 
-          </>
-        ) : (
-          ""
-        )}
-      </View>
-
-      {boardToShow ? (
-        <>
-
-          <ImageBackground
-            source={boardToShow.boardView}
-            style={styles.background}
-          >
-          </ImageBackground>
-        </>
-      ) : ""}
-
-
-      {/*<StatusBar style="auto"/>*/}
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -91,54 +75,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
   },
-  images: {
-    width: 248,
-    height: 200,
-  },
-  button: {
-    position: 'relative',
-    backgroundColor: '#ff1014',
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-    margin: 50,
-    borderRadius: 18,
-  },
-  worldImage: {
-    width: 310,
-    height: 200,
-    borderRadius: 40,
-  },
-  background: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: -1,
-  },
-  overlay: {
-    padding: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.5)',
-  },
-  text: {
-    fontSize: 24,
-    color: '#fff',
-  },
-  blur: {
-    padding: 10,
-    borderRadius: 10,
-  },
-  hat: {
-    position: 'absolute',
-    top: -18,
-    right: 62,
-    width: 37,
-    height: 30
-  }
 });
