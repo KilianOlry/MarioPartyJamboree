@@ -1,8 +1,10 @@
-import {StyleSheet, Animated, View, Image} from "react-native";
+import {StyleSheet, Animated} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
+import {boardToshow} from "../../store/store";
 
 
 export const Gradient = () => {
+  const {boardToShow, setBoardToShow} = boardToshow();
   const bounceValue = new Animated.Value(1);
 
   const bounceAnimation = () => {
@@ -72,36 +74,62 @@ export const Gradient = () => {
 
   return (
     <>
-      <LinearGradient
-        colors={['#049CD8', '#67C7FF']}
-        style={[styles.backgroundGradient, styles.absolut]}
-      />
+      {!boardToShow ? (
+        <>
+          <LinearGradient
+            colors={['#049CD8', '#67C7FF']}
+            style={[styles.backgroundGradient, styles.absolut]}
+          />
 
-      <Animated.Image
-        style={[styles.bottomRight, styles.absolut, {transform: [{ scale: bounceValue },], },]}
-        source={require('../../assets/cloud.png')}>
-      </Animated.Image>
+          <Animated.Image
+            style={[
+              styles.bottomRight,
+              styles.absolut,
+              { transform: [{ scale: bounceValue }] },
+            ]}
+            source={require('../../assets/cloud.png')}
+          />
 
-      <Animated.Image
-        style={[styles.bottomLeft, styles.absolut, {transform: [{ scale: bounceValue },], },]}
-        source={require('../../assets/cloud-2.png')}>
-      </Animated.Image>
+          <Animated.Image
+            style={[
+              styles.bottomLeft,
+              styles.absolut,
+              { transform: [{ scale: bounceValue }] },
+            ]}
+            source={require('../../assets/cloud-2.png')}
+          />
 
-      <Animated.Image
-        style={[styles.mid, styles.absolut, {transform: [{ scale: bounceValue },], },]}
-        source={require('../../assets/cloud-3.png')}>
-      </Animated.Image>
+          <Animated.Image
+            style={[
+              styles.mid,
+              styles.absolut,
+              { transform: [{ scale: bounceValue }] },
+            ]}
+            source={require('../../assets/cloud-3.png')}
+          />
 
-      <Animated.Image
-        style={[styles.topLeft, styles.absolut, styles.cloudBackground, {transform: [{ scale: bounceValue },], },]}
-        source={require('../../assets/cloud-3.png')}>
-      </Animated.Image>
+          <Animated.Image
+            style={[
+              styles.topLeft,
+              styles.absolut,
+              styles.cloudBackground,
+              { transform: [{ scale: bounceValue }] },
+            ]}
+            source={require('../../assets/cloud-3.png')}
+          />
 
-      <Animated.Image
-        style={[styles.topRight, styles.absolut, styles.cloudBackground, {transform: [{ scale: bounceValue },], },]}
-        source={require('../../assets/cloud-4.png')}>
-      </Animated.Image>
-
+          <Animated.Image
+            style={[
+              styles.topRight,
+              styles.absolut,
+              styles.cloudBackground,
+              { transform: [{ scale: bounceValue }] },
+            ]}
+            source={require('../../assets/cloud-4.png')}
+          />
+        </>
+      ) : null}
     </>
-  )
+  );
+
 }

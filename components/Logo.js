@@ -1,7 +1,8 @@
 import {Animated, StyleSheet, View} from "react-native";
+import {boardToshow} from "../store/store";
 
-export const Logo = ({boardToShow}) => {
-
+export const Logo = () => {
+  const {boardToShow, setBoardToShow} = boardToshow();
   const bounceValue = new Animated.Value(1);
 
   const bounceAnimation = () => {

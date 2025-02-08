@@ -1,11 +1,22 @@
 import {useFonts} from "expo-font";
-import {Image, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {Animated, Image, StyleSheet, Text, TouchableOpacity} from "react-native";
+import {useRef} from "react";
 
 export const ButtonRandom = ({handleClick}) => {
 
   const [loaded, error] = useFonts({
     'AOTFShinGoProBold': require('../assets/fonts/AOTFShinGoProDeBold.otf'),
   });
+
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const slideOut = () => {
+    Animated.timing(slideAnim, {
+      toValue: 500, // Déplace l'élément à 500 pixels à droite (hors écran)
+      duration: 1000, // Durée de l'animation (1 seconde)
+      useNativeDriver: true, // Utilisation du moteur natif pour les animations
+    }).start();
+  };
 
   return (
     <TouchableOpacity style={styles.button} onPress={() => {
@@ -26,7 +37,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     left: '50%',
-    transform: [{ translateX: -100 }],
+    transform: [{translateX: -100}],
     right: 0,
     backgroundColor: '#E52521',
     paddingVertical: 10,
