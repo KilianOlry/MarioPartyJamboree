@@ -17,6 +17,7 @@
 <p align="center">
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#dart-Dependancies">Dependancies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
   <a href="https://github.com/KilianOlry" target="_blank">Author</a>
@@ -34,7 +35,7 @@ The following tools were used in this project:
 
 - React Native
 
-## :dart: Dependencies
+## :dart: Dependancies
 - `expo`: Tools and libraries for building cross-platform apps with React Native.
 - `expo-blur`: Adds blur effects to your app.
 - `expo-font`: Enables custom font loading in Expo apps.
