@@ -6,7 +6,7 @@ import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from 're
 export const BoardCard = () => {
   const {gameToShow} = gameToShowStore();
 
-
+  // Animations
   const opacity = useSharedValue(gameToShow ? 1 : 0);
   const translateY = useSharedValue(gameToShow ? 0 : 300);
   const rotateZ = useSharedValue(gameToShow ? 0 : 120);

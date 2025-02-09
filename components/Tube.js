@@ -3,26 +3,7 @@ import {gameToShowStore} from "../store/store";
 
 
 export const Tube = () => {
-  const {gameToShow, setGameToShow} = gameToShowStore();
-  const bounceValue = new Animated.Value(1);
-
-  const bounceAnimation = () => {
-
-    Animated.loop(
-      Animated.sequence([
-          Animated.spring(bounceValue, {
-            toValue: 1.02,
-            friction: 1,
-            tension: 10,
-            duration: 4000,
-            useNativeDriver: true,
-          })
-        ]
-      )
-    ).start();
-  };
-
-  bounceAnimation();
+  const {gameToShow} = gameToShowStore();
 
   const styles = StyleSheet.create({
     tubeBackground: {
@@ -43,7 +24,7 @@ export const Tube = () => {
         <>
           <Animated.Image
             style={[
-              styles.tubeBackground
+              styles.tubeBackground,
             ]}
             source={require('../assets/images/tube.png')}
           />

@@ -1,9 +1,9 @@
-import {ImageBackground, StyleSheet, Text} from "react-native";
+import {ImageBackground, StyleSheet} from "react-native";
 import {gameToShowStore} from "../store/store";
 import { BlurView } from 'expo-blur';
 
 export const BoardBackground = () => {
-  const {gameToShow, setGameToShow} = gameToShowStore();
+  const {gameToShow} = gameToShowStore();
 
   return (
     gameToShow ? (

@@ -4,7 +4,7 @@ import {gameToShowStore} from "../../store/store";
 
 
 export const Clouds = () => {
-  const {gameToShow, setGameToShow} = gameToShowStore();
+  const {gameToShow} = gameToShowStore();
   const bounceValue = new Animated.Value(1);
 
   const bounceAnimation = () => {
