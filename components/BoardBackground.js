@@ -15,7 +15,7 @@ export const BoardBackground = () => {
         </ImageBackground>
 
         <BlurView
-          intensity={50}
+          intensity={80}
           style={styles.blurContainer}
           tint="dark"
         >

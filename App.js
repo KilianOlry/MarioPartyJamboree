@@ -15,7 +15,6 @@ import { Audio } from 'expo-av';
 
 export default function App() {
 
-  const {randomNumber, generateRandomNumber} = generateRandomStore();
   const {gameToShow, setGameToShow} = gameToShowStore();
   const [sound, setSound] = useState(null);
 
@@ -51,7 +50,8 @@ export default function App() {
 
   const handleClick = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    generateRandomNumber();
+    generateRandomStore.getState().generateRandomNumber();
+    const randomNumber = generateRandomStore.getState().randomNumber;
     const board = boards[randomNumber];
     console.log(board);
     setGameToShow(board);
