@@ -34,6 +34,22 @@ The following tools were used in this project:
 
 - React Native
 
+## :dart: Dependencies
+- `expo`: Tools and libraries for building cross-platform apps with React Native.
+- `expo-blur`: Adds blur effects to your app.
+- `expo-font`: Enables custom font loading in Expo apps.
+- `expo-linear-gradient`: Creates linear gradient backgrounds.
+- `expo-status-bar`: Customizes the status bar.
+- `react`: A library for building UIs with React.
+- `react-native`: Framework for building native mobile apps with React.
+- `react-native-linear-gradient`: Adds linear gradients to React Native views.
+- `react-native-paper`: Material Design components for React Native.
+- `react-native-reanimated`: Smooth animations for React Native.
+- `zustand`: A fast state management library for React.
+- `expo-haptics`: Implements haptic feedback (vibration) in apps.
+- `expo-av`: Handles audio and video playback.
+- `expo-splash-screen`: Customizes the splash screen behavior.
+
 ## :white_check_mark: Requirements
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) | [Node](https://nodejs.org/en/) | [Composer](https://getcomposer.org/) | [Expo](https://expo.dev/) installed .
