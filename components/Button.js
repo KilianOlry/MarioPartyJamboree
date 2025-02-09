@@ -1,6 +1,7 @@
-import {useFonts} from "expo-font";
+import {useEffect} from "react";
+import * as SplashScreen from 'expo-splash-screen';
 import {Animated, Image, StyleSheet, Text, TouchableOpacity} from "react-native";
-import {useRef} from "react";
+import {useFonts} from "expo-font";
 
 
 export const ButtonRandom = ({handleClick}) => {
@@ -9,15 +10,15 @@ export const ButtonRandom = ({handleClick}) => {
     'AOTFShinGoProBold': require('../assets/fonts/AOTFShinGoProDeBold.otf'),
   });
 
-  const slideAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
 
-  const slideOut = () => {
-    Animated.timing(slideAnim, {
-      toValue: 500,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <TouchableOpacity style={[styles.button, styles.absolut]} onPress={() => {

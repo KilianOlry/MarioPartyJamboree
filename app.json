@@ -4,7 +4,6 @@
     "slug": "MarioPartyJamboree",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -25,7 +24,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/AOTFShinGoProRegular.otf"]
+        }
+      ]
     ]
   }
 }
