@@ -53,10 +53,8 @@ export default function App() {
     generateRandomStore.getState().generateRandomNumber();
     const randomNumber = generateRandomStore.getState().randomNumber;
     const board = boards[randomNumber];
-    console.log(board);
     setGameToShow(board);
   };
-
 
   return (
     <SafeAreaView style={styles.container}>
